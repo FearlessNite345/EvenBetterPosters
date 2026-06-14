@@ -23,8 +23,8 @@ From this repo:
 The package will be written to:
 
 ```text
-artifacts\EvenBetterPosters_2.1.1.zip
-dist\EvenBetterPosters_2.1.1.zip
+artifacts\EvenBetterPosters_2.1.2.zip
+dist\EvenBetterPosters_2.1.2.zip
 ```
 
 ## Manual Install
@@ -33,10 +33,10 @@ dist\EvenBetterPosters_2.1.1.zip
 2. Create this folder:
 
 ```text
-C:\ProgramData\Jellyfin\Server\plugins\Even Better Posters_2.1.1.0
+C:\ProgramData\Jellyfin\Server\plugins\Even Better Posters_2.1.2.0
 ```
 
-3. Extract `artifacts\EvenBetterPosters_2.1.1.zip` into that folder.
+3. Extract `artifacts\EvenBetterPosters_2.1.2.zip` into that folder.
 4. Start Jellyfin.
 5. Open Dashboard > Plugins > My Plugins > Even Better Posters and enable automatic fetching only if you want Jellyfin scans to request Btttr posters.
 
@@ -63,12 +63,12 @@ Repository URL: https://raw.githubusercontent.com/FearlessNite345/EvenBetterPost
 1. Switch to the Catalog tab.
 2. Search for `Btttr` or scroll to the Metadata category.
 3. Click Even Better Posters.
-4. Select version `2.1.1.0` and click Install.
+4. Select version `2.1.2.0` and click Install.
 5. Restart Jellyfin after installation.
 6. Open Dashboard > Plugins > My Plugins > Even Better Posters and enable automatic fetching only if you want it.
 
 The repository URL above points Jellyfin at the manifest. The manifest then points Jellyfin at the install zip:
 
 ```text
-https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/dist/EvenBetterPosters_2.1.1.zip
+https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/dist/EvenBetterPosters_2.1.2.zip
 ```

@@ -10,8 +10,8 @@ $Artifacts = Join-Path $Root "artifacts"
 $Dist = Join-Path $Root "dist"
 $PackageDir = Join-Path $Artifacts "package"
 $PublishDir = Join-Path $Artifacts "publish"
-$ZipPath = Join-Path $Artifacts "EvenBetterPosters_2.1.1.zip"
-$DistZipPath = Join-Path $Dist "EvenBetterPosters_2.1.1.zip"
+$ZipPath = Join-Path $Artifacts "EvenBetterPosters_2.1.2.zip"
+$DistZipPath = Join-Path $Dist "EvenBetterPosters_2.1.2.zip"
 $BuildDir = Join-Path $Root "jellyfin-btttr-plugin\bin\$Configuration\net8.0"
 
 if (-not (Test-Path $Artifacts)) {
@@ -43,5 +43,7 @@ if (Test-Path $ZipPath) {
 
 Compress-Archive -Path (Join-Path $PackageDir "*") -DestinationPath $ZipPath -Force
 Copy-Item -LiteralPath $ZipPath -Destination $DistZipPath -Force
+$Checksum = (Get-FileHash -Algorithm MD5 -LiteralPath $DistZipPath).Hash
 Write-Host "Created $ZipPath"
 Write-Host "Updated $DistZipPath"
+Write-Host "MD5 checksum $Checksum"
