@@ -9,11 +9,11 @@
     "imageUrl": "https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/cover.png",
     "versions": [
       {
-        "version": "2.1.2.0",
-        "changelog": "Personal build: added the required package checksum for Jellyfin catalog installs.",
+        "version": "2.1.3.0",
+        "changelog": "Personal build: manual image search now works while automatic library-scan fetching stays disabled by default.",
         "targetAbi": "10.9.0.0",
-        "sourceUrl": "https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/dist/EvenBetterPosters_2.1.2.zip",
-        "checksum": "9121135688F671AD4240CDE7A40C4FB0",
+        "sourceUrl": "https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/dist/EvenBetterPosters_2.1.3.zip",
+        "checksum": "64DD79836165BEB785A9FBA1D41512A3",
         "timestamp": "2026-06-14T00:00:00Z"
       }
     ]

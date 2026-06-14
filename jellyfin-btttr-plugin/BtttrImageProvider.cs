@@ -47,12 +47,12 @@ namespace Jellyfin.Plugin.BtttrPosters
 
         public bool Supports(BaseItem item)
         {
-            return IsProviderEnabled() && (item is Movie || item is Series);
+            return item is Movie || item is Series;
         }
 
         public IEnumerable<ImageType> GetSupportedImages(BaseItem item)
         {
-            return IsProviderEnabled() ? new[] { ImageType.Primary } : Array.Empty<ImageType>();
+            return new[] { ImageType.Primary };
         }
 
         public Task<IEnumerable<RemoteImageInfo>> GetImages(BaseItem item, CancellationToken cancellationToken)
@@ -64,9 +64,9 @@ namespace Jellyfin.Plugin.BtttrPosters
         {
             var images = new List<RemoteImageInfo>();
             var config = Plugin.Instance?.Configuration ?? new PluginConfiguration();
-            if (!config.EnableAutomaticFetching)
+            if (!config.EnableAutomaticFetching && IsAutomaticRefreshCall())
             {
-                _logger.LogDebug("Btttr Image Provider is disabled by configuration.");
+                _logger.LogDebug("Skipping Btttr Image Provider during automatic image refresh because automatic fetching is disabled.");
                 return images;
             }
 
@@ -281,9 +281,9 @@ namespace Jellyfin.Plugin.BtttrPosters
             };
         }
 
-        private static bool IsProviderEnabled()
+        private static bool IsAutomaticRefreshCall()
         {
-            return Plugin.Instance?.Configuration?.EnableAutomaticFetching == true;
+            return Environment.StackTrace.Contains("MediaBrowser.Providers.Manager.ItemImageProvider", StringComparison.Ordinal);
         }
     }
 }

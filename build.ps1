@@ -10,8 +10,8 @@ $Artifacts = Join-Path $Root "artifacts"
 $Dist = Join-Path $Root "dist"
 $PackageDir = Join-Path $Artifacts "package"
 $PublishDir = Join-Path $Artifacts "publish"
-$ZipPath = Join-Path $Artifacts "EvenBetterPosters_2.1.2.zip"
-$DistZipPath = Join-Path $Dist "EvenBetterPosters_2.1.2.zip"
+$ZipPath = Join-Path $Artifacts "EvenBetterPosters_2.1.3.zip"
+$DistZipPath = Join-Path $Dist "EvenBetterPosters_2.1.3.zip"
 $BuildDir = Join-Path $Root "jellyfin-btttr-plugin\bin\$Configuration\net8.0"
 
 if (-not (Test-Path $Artifacts)) {
