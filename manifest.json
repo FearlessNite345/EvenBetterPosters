@@ -12,7 +12,7 @@
         "version": "2.1.1.0",
         "changelog": "Personal build: disabled automatic Btttr poster fetching by default and added a plugin setting to enable it.",
         "targetAbi": "10.9.0.0",
-        "sourceUrl": "https://github.com/FearlessNite345/EvenBetterPosters/releases/download/v2.1.1/EvenBetterPosters_2.1.1.zip",
+        "sourceUrl": "https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/dist/EvenBetterPosters_2.1.1.zip",
         "checksum": "",
         "timestamp": "2026-06-13T00:00:00Z"
       }

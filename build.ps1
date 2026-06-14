@@ -7,13 +7,19 @@ $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Project = Join-Path $Root "jellyfin-btttr-plugin\BtttrPosterPlugin.csproj"
 $Artifacts = Join-Path $Root "artifacts"
+$Dist = Join-Path $Root "dist"
 $PackageDir = Join-Path $Artifacts "package"
 $PublishDir = Join-Path $Artifacts "publish"
 $ZipPath = Join-Path $Artifacts "EvenBetterPosters_2.1.1.zip"
+$DistZipPath = Join-Path $Dist "EvenBetterPosters_2.1.1.zip"
 $BuildDir = Join-Path $Root "jellyfin-btttr-plugin\bin\$Configuration\net8.0"
 
 if (-not (Test-Path $Artifacts)) {
     New-Item -ItemType Directory -Path $Artifacts | Out-Null
+}
+
+if (-not (Test-Path $Dist)) {
+    New-Item -ItemType Directory -Path $Dist | Out-Null
 }
 
 if (Test-Path $PackageDir) {
@@ -36,4 +42,6 @@ if (Test-Path $ZipPath) {
 }
 
 Compress-Archive -Path (Join-Path $PackageDir "*") -DestinationPath $ZipPath -Force
+Copy-Item -LiteralPath $ZipPath -Destination $DistZipPath -Force
 Write-Host "Created $ZipPath"
+Write-Host "Updated $DistZipPath"

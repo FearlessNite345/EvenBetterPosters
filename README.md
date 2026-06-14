@@ -10,7 +10,7 @@ The plugin adds Btttr.cc as a Jellyfin remote image provider for movies and seri
 - Keeps automatic Btttr poster fetching disabled by default until enabled in plugin settings.
 - Fixes the broken TMDB fallback path by resolving TMDB IDs to IMDb IDs before calling Btttr.cc.
 - Stops relying on the missing upstream v2 release asset.
-- Builds a local install zip under `artifacts/`.
+- Builds a local install zip under `artifacts/` and updates the repository-install zip under `dist/`.
 
 ## Build
 
@@ -24,6 +24,7 @@ The package will be written to:
 
 ```text
 artifacts\EvenBetterPosters_2.1.1.zip
+dist\EvenBetterPosters_2.1.1.zip
 ```
 
 ## Manual Install
@@ -41,7 +42,7 @@ C:\ProgramData\Jellyfin\Server\plugins\Even Better Posters_2.1.1.0
 
 ## Repository Install
 
-This matches Jellyfin's built-in plugin repository flow. It works after this repo is pushed somewhere Jellyfin can read and `artifacts\EvenBetterPosters_2.1.1.zip` is uploaded to the release URL listed in `manifest.json`.
+This matches Jellyfin's built-in plugin repository flow. It works after this public repo is pushed because `manifest.json` points at the tracked zip in `dist/`.
 
 ### Step 1: Add the Repository
 
@@ -66,8 +67,8 @@ Repository URL: https://raw.githubusercontent.com/FearlessNite345/EvenBetterPost
 5. Restart Jellyfin after installation.
 6. Open Dashboard > Plugins > My Plugins > Even Better Posters and enable automatic fetching only if you want it.
 
-The repository URL above points Jellyfin at the manifest. The manifest then points Jellyfin at the release asset:
+The repository URL above points Jellyfin at the manifest. The manifest then points Jellyfin at the install zip:
 
 ```text
-https://github.com/FearlessNite345/EvenBetterPosters/releases/download/v2.1.1/EvenBetterPosters_2.1.1.zip
+https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/dist/EvenBetterPosters_2.1.1.zip
 ```
