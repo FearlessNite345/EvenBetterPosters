@@ -1,0 +1,21 @@
+[
+  {
+    "guid": "9d283167-31b1-492b-b2fc-2564c5cb9cc8",
+    "name": "Even Better Posters",
+    "overview": "Adds configurable Btttr.cc poster cards to Jellyfin.",
+    "description": "This plugin adds Btttr.cc as a configurable Remote Image Provider in Jellyfin for movies and TV series. Automatic fetching is disabled by default and can be enabled from the plugin settings.",
+    "owner": "FearlessNite345",
+    "category": "Metadata",
+    "imageUrl": "https://raw.githubusercontent.com/FearlessNite345/EvenBetterPosters/main/cover.png",
+    "versions": [
+      {
+        "version": "2.1.1.0",
+        "changelog": "Personal build: disabled automatic Btttr poster fetching by default and added a plugin setting to enable it.",
+        "targetAbi": "10.9.0.0",
+        "sourceUrl": "https://github.com/FearlessNite345/EvenBetterPosters/releases/download/v2.1.1/EvenBetterPosters_2.1.1.zip",
+        "checksum": "",
+        "timestamp": "2026-06-13T00:00:00Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,173 @@
+<div id="EvenBetterPostersConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-button,emby-input,emby-select,emby-checkbox">
+    <div data-role="content">
+        <div class="content-primary">
+            <form id="EvenBetterPostersConfigForm">
+                <div class="sectionTitleContainer flex align-items-center justify-content-between">
+                    <h2 class="sectionTitle">Even Better Posters - Configuration</h2>
+                </div>
+
+                <div class="verticalFormContainer">
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkEnableAutomaticFetching" name="EnableAutomaticFetching" />
+                            <span>Enable automatic Btttr poster fetching</span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription">
+                            Disabled by default. When this is off, Jellyfin scans will not request poster images from Btttr.cc.
+                        </div>
+                    </div>
+
+                    <div class="selectContainer">
+                        <label for="selectPosterLanguage">Poster Language</label>
+                        <select is="emby-select" id="selectPosterLanguage" name="PosterLanguage" class="emby-select">
+                            <option value="none">Disabled (No language parameter)</option>
+                            <option value="en">English (EN)</option>
+                            <option value="es">Spanish (ES)</option>
+                            <option value="fr">French (FR)</option>
+                            <option value="de">German (DE)</option>
+                            <option value="pt-BR">Portuguese - Brazil (PT-BR)</option>
+                            <option value="pt-PT">Portuguese - Portugal (PT-PT)</option>
+                            <option value="it">Italian (IT)</option>
+                            <option value="nl">Dutch (NL)</option>
+                            <option value="pl">Polish (PL)</option>
+                            <option value="ru">Russian (RU)</option>
+                            <option value="tr">Turkish (TR)</option>
+                            <option value="ar">Arabic (AR)</option>
+                            <option value="ja">Japanese (JA)</option>
+                            <option value="ko">Korean (KO)</option>
+                            <option value="zh">Chinese (ZH)</option>
+                            <option value="hi">Hindi (HI)</option>
+                            <option value="sv">Swedish (SV)</option>
+                            <option value="cs">Czech (CS)</option>
+                        </select>
+                        <div class="fieldDescription">
+                            Select the preferred poster language fetched from Btttr.cc.
+                        </div>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkTrendTags" name="TrendTags" />
+                            <span>Trend tags</span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription">
+                            Adds Btttr tags such as Trending, New, and rank badges.
+                        </div>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkQualityTags" name="QualityTags" />
+                            <span>Quality tags</span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription">
+                            Adds quality badges such as 4K, Dolby Vision, and Atmos when Btttr has them.
+                        </div>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkShowGenre" name="ShowGenre" />
+                            <span>Show genre</span>
+                        </label>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkShowRating" name="ShowRating" />
+                            <span>Show rating</span>
+                        </label>
+                    </div>
+
+                    <div class="selectContainer">
+                        <label for="selectRatingSource">Rating Source</label>
+                        <select is="emby-select" id="selectRatingSource" name="RatingSource" class="emby-select">
+                            <option value="avg">Average</option>
+                            <option value="IM">IMDb (/10)</option>
+                            <option value="TM">TMDB (/10)</option>
+                            <option value="RT">Rotten Tomatoes (%)</option>
+                            <option value="MC">Metacritic (/100)</option>
+                            <option value="TR">Trakt (/10)</option>
+                            <option value="LB">Letterboxd (/5)</option>
+                            <option value="RE">Roger Ebert (/4)</option>
+                        </select>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkShowAgeRating" name="ShowAgeRating" />
+                            <span>Show age rating</span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription">
+                            Adds badges such as PG-13, TV-MA, or R when available.
+                        </div>
+                    </div>
+
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkFallback" name="FallbackToTmdbText" />
+                            <span>Fallback to TMDB ID if IMDb ID is missing</span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription">
+                            If IMDb ID is not found, use Cinemeta to resolve the TMDB ID back to an IMDb ID before asking Btttr.cc for a poster.
+                        </div>
+                    </div>
+
+                    <button is="emby-button" type="submit" class="raised button-submit block emby-button">
+                        <span>Save Configuration</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            (function () {
+                var pluginUniqueId = '9d283167-31b1-492b-b2fc-2564c5cb9cc8';
+
+                document.querySelector('#EvenBetterPostersConfigPage').addEventListener('pageshow', function () {
+                    var page = this;
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(pluginUniqueId).then(function (config) {
+                        page.querySelector('#chkEnableAutomaticFetching').checked = config.EnableAutomaticFetching === true;
+                        page.querySelector('#selectPosterLanguage').value = config.PosterLanguage || 'en';
+                        page.querySelector('#chkTrendTags').checked = config.TrendTags !== false;
+                        page.querySelector('#chkQualityTags').checked = config.QualityTags === true;
+                        page.querySelector('#chkShowGenre').checked = config.ShowGenre !== false;
+                        page.querySelector('#chkShowRating').checked = config.ShowRating !== false;
+                        page.querySelector('#selectRatingSource').value = config.RatingSource || 'avg';
+                        page.querySelector('#chkShowAgeRating').checked = config.ShowAgeRating === true;
+                        page.querySelector('#chkFallback').checked = config.FallbackToTmdbText !== false;
+                        Dashboard.hideLoadingMsg();
+                    }).catch(function () {
+                        Dashboard.hideLoadingMsg();
+                    });
+                });
+
+                document.querySelector('#EvenBetterPostersConfigForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    var form = this;
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(pluginUniqueId).then(function (config) {
+                        config.EnableAutomaticFetching = form.querySelector('#chkEnableAutomaticFetching').checked;
+                        config.PosterLanguage = form.querySelector('#selectPosterLanguage').value;
+                        config.TrendTags = form.querySelector('#chkTrendTags').checked;
+                        config.QualityTags = form.querySelector('#chkQualityTags').checked;
+                        config.ShowGenre = form.querySelector('#chkShowGenre').checked;
+                        config.ShowRating = form.querySelector('#chkShowRating').checked;
+                        config.RatingSource = form.querySelector('#selectRatingSource').value;
+                        config.ShowAgeRating = form.querySelector('#chkShowAgeRating').checked;
+                        config.FallbackToTmdbText = form.querySelector('#chkFallback').checked;
+                        ApiClient.updatePluginConfiguration(pluginUniqueId, config).then(function (result) {
+                            Dashboard.hideLoadingMsg();
+                            if (window.Dashboard && Dashboard.processServerConfigurationUpdateResult) {
+                                Dashboard.processServerConfigurationUpdateResult(result);
+                            }
+                        }).catch(function() {
+                            Dashboard.hideLoadingMsg();
+                        });
+                    });
+                });
+            })();
+        </script>
+    </div>
+</div>
